@@ -1,8 +1,10 @@
+import sqlite3
+from flask import g
 import os
 import uuid
 from flask import send_from_directory
 from flask import Flask, render_template, request, redirect, session
-from flask_mysqldb import MySQL
+#from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -11,13 +13,46 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "notesphere_secret"
 
 # MySQL Config
-app.config['MYSQL_HOST'] = 'localhost'
+'''app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''   # put your MySQL password if any
-app.config['MYSQL_DB'] = 'notesphere'
+app.config['MYSQL_DB'] = 'notesphere
 
-mysql = MySQL(app)
+mysql = MySQL(app)'''
 
+def get_db():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+def init_db():
+    with sqlite3.connect("notesphere.db") as conn:
+        cursor = conn.cursor()
+
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT,
+            email TEXT,
+            password TEXT
+        )
+        """)
+
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS files (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT,
+            description TEXT,
+            filename TEXT,
+            category TEXT
+        )
+        """)
+
+        conn.commit()
+        conn.close()
+
+
+init_db()
 
 @app.route('/')
 def home():
@@ -29,18 +64,22 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
-        password = generate_password_hash(request.form['password'])
+        password = request.form['password']
 
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO users(username,email,password) VALUES(%s,%s,%s)",
-                    (username, email, password))
-        mysql.connection.commit()
-        cur.close()
+        conn = get_db()
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+            (username, email, password)
+        )
+
+        conn.commit()
+        conn.close()
 
         return redirect('/login')
 
-    return render_template("register.html")
-
+    return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -48,37 +87,35 @@ def login():
         email = request.form['email']
         password = request.form['password']
 
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM users WHERE email=%s", [email])
-        user = cur.fetchone()
-        cur.close()
+        conn = get_db()
+        cursor = conn.cursor()
 
-        if user and check_password_hash(user[3], password):
-            session['user'] = user[1]
+        cursor.execute(
+            "SELECT * FROM users WHERE email=? AND password=?",
+            (email, password)
+        )
+
+        user = cursor.fetchone()
+        conn.close()
+
+        if user:
+            session['user'] = user['username']
             return redirect('/dashboard')
 
-    return render_template("login.html")
+    return render_template('login.html')
 
 
 @app.route('/dashboard')
 def dashboard():
-    if 'user' not in session:
-        return redirect('/login')
+    conn = get_db()
+    cursor = conn.cursor()
 
-    search = request.args.get('search')
+    cursor.execute("SELECT * FROM files")
+    files = cursor.fetchall()
 
-    cur = mysql.connection.cursor()
+    conn.close()
 
-    if search:
-        cur.execute("SELECT * FROM files WHERE title LIKE %s", ("%" + search + "%",))
-    else:
-        cur.execute("SELECT * FROM files ORDER BY uploaded_at DESC")
-
-    files = cur.fetchall()
-    cur.close()
-
-    return render_template("dashboard.html", files=files)
-
+    return render_template('dashboard.html', files=files)
 
 @app.route('/logout')
 def logout():
@@ -87,36 +124,34 @@ def logout():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    if 'user' not in session:
-        return redirect('/login')
-    if session['user'] != 'admin':
-        return "Access Denied"
-
     if request.method == 'POST':
         title = request.form['title']
         description = request.form['description']
         category = request.form['category']
+
         file = request.files['file']
+        filename = file.filename
+        file.save(os.path.join("uploads", filename))
 
-        if file:
-            unique_name = str(uuid.uuid4()) + "_" + file.filename
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], unique_name)
-            file.save(filepath)
+        conn = get_db()
+        cursor = conn.cursor()
 
-            cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO files(title, description, filename, category) VALUES(%s,%s,%s,%s)",
-            (title, description, unique_name, category))
-            mysql.connection.commit()
-            cur.close()
+        cursor.execute("""
+        INSERT INTO files (title, description, filename, category)
+        VALUES (?, ?, ?, ?)
+        """, (title, description, filename, category))
 
-            return redirect('/dashboard')
+        conn.commit()
+        conn.close()
 
-    return render_template('upload.html')
+        return redirect('/dashboard')
+
+    return render_template('upload.html')@app.route('/download/<filename>')
 
 @app.route('/download/<filename>')
 def download(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+    return send_file(os.path.join("uploads", filename), as_attachment=True)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
