@@ -1,0 +1,173 @@
+/*1. four stars in same row
+#include<stdio.h>
+int main()
+{
+    int i,j;
+        
+    for(i=1;i<=5;i++)
+    {
+        for(j=1;j<=5;j++)
+        {
+            printf("*");
+        }
+   printf("\n");
+    }
+}
+
+//2. increasing order triangle pattern
+#include<stdio.h>
+int main()
+{
+    int i,j;
+        
+    for(i=1;i<=5;i++)
+    {
+        for(j=1;j<=i;j++)
+        {
+            printf("*");
+        }
+   printf("\n");
+    }
+} 
+
+//3. increasing triangle 1 -12 -123 -1234
+#include<stdio.h>
+int main()
+{
+    int i,j;
+        
+    for(i=1;i<=5;i++)
+    {
+        for(j=1;j<=i;j++)
+        {
+            printf("%d",j);
+        }
+   printf("\n");
+    }
+}
+
+//4. increasing order 1-22-333-4444-55555
+#include<stdio.h>
+int main()
+{
+    int i,j;
+        
+    for(i=1;i<=5;i++)
+    {
+        for(j=1;j<=i;j++)
+        {
+            printf("%d",i);
+        }
+   printf("\n");
+    }
+}
+
+//5. decreasing order triangle 12345-1234-123-12-1
+#include<stdio.h>
+int main()
+{
+    int i,j;
+        
+    for(i=5;i>=1;i--)
+    {
+       
+        for(j=1;j<=i;j++)
+        {
+            printf("%d",j);
+        }
+   printf("\n");
+    }
+}
+
+//6. decreasing order triangle 55555-4444-333-22-1
+#include<stdio.h>
+int main()
+{
+    int i,j;
+        
+    for(i=5;i>=1;i--)
+    {
+        for(j=1;j<=i;j++)
+        {
+            printf("%d",i);
+        }
+        printf("\n");
+    }
+}
+
+//7. decreasing order space and increasing order triangle 
+//with 1-12-123-1234-12345
+#include<stdio.h>
+int main()
+{
+    int i,j;
+        
+    for(i=1;i<=5;i++)
+    {
+        for(j=1;j<=5-i;j++)
+        {
+            printf(" ");
+        }
+        for(j=1;j<=i;j++)
+        {
+            printf("%d",j);
+        }
+        printf("\n");
+    }
+}
+
+//8. prpgram to check a number is prime or not
+#include<stdio.h>
+int main()
+{
+    int n,i;
+    printf("enter the number");
+    scanf("%d",&n);
+        
+    for(i=2;i<=n;i++)
+    {
+        if(n%i==0)
+        break;
+    }
+    if(i==n)
+    printf("number is prime");
+    else
+    printf("it is composite");
+}
+
+
+//9.all prime numbers in between 1 to 100
+#include<stdio.h>
+int main()
+{
+    int n,i,j;   
+    for(n=1;n<=100;n++)
+    {
+        i=0;
+        for(j=1;j<=n;j++)
+        {
+            if(n%j==0)
+            i++;
+        }
+        if (i==2)
+        printf("%d\t",n);
+    }
+}
+*/
+//10. print the fibonacci series nth term
+#include<stdio.h>
+int main()
+{
+    int i,a=0,b=1,c=1,n;
+    printf("enter the number of terms");
+    scanf("%d",&n);  
+    for(i=1;i<=n;i++)
+    {
+        printf("%d\t",c);
+        c=a+b;
+        a=b;
+        b=c;
+       
+        
+    }
+}

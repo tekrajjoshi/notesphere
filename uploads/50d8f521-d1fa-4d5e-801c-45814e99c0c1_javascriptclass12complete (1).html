@@ -1,0 +1,278 @@
+<!--1. program to print hello world
+<html>
+<head>
+<title>First JS program</title>
+</head>
+<body>
+<script type="text/javascript">
+var a=6;
+document.write("hello world");
+alert("hello")
+console.log("hello")
+document.write(a);
+alert(a)
+console.log(a)
+</script>
+</body>
+</html>
+
+
+2.write a javascript fucntion to add two numbers using function 
+<html>
+<head>
+<title>First JS program</title>
+</head>
+<body>
+<script type="text/javascript">
+var a = parseInt(prompt("enter first number"));
+var b = parseInt(prompt("enter second number"));
+function sum(a,b){
+var sum = a+b;
+alert("sum is" +sum);
+}
+sum(a,b);
+
+3.write a javascript fucntion to add two numbers without function  
+<html>
+<head>
+<title>First JS program</title>
+</head>
+<body>
+<script type="text/javascript">
+var a = parseInt(prompt("enter first number"));
+var b = parseInt(prompt("enter second number"));
+var sum=a+b;
+document.write(sum);
+</script>
+</body>
+</html>
+
+
+4.write a javascript fucntion to find largest among three no. without function  
+<html>
+<head>
+<title>First JS program</title>
+</head>
+<body>
+<script type="text/javascript">
+var a = parseInt(prompt("enter first number"));
+var b = parseInt(prompt("enter second number"));
+var c = parseInt(prompt("enter third number"));
+
+if(a>b && a>c)
+{
+alert("a is largest");
+}
+else if(b>a && b>c)
+{
+alert("b is largest");
+}
+else
+{
+alert("c is largest");
+}
+</script>
+</body>
+</html>
+
+
+5.write a javascript fucntion to find number is odd or even  
+<html>
+<head>
+<title>First JS program</title>
+</head>
+<body>
+<script type="text/javascript">
+document.write("hello");
+var a = parseInt(prompt("enter first number"));
+function oddeven(a){
+if(a%2==0)
+{
+alert("even");
+}
+else
+{
+alert("odd");}
+}
+oddeven(a);
+</script>
+</body>
+</html>
+
+
+6. program to change the elements of html elements
+<html>
+<head>
+<title>First JS program</title>
+</head>
+<body>
+<h2 id="one">Bhaktapur is the capital of nepal</h2>
+<button type="button" onclick='document.getElementById("one").innerHTML="KTM is the capital" '>Change</button>
+</body>
+</html>
+
+
+7. program to swap two values
+<html>
+<head>
+<title>First JS program</title>
+</head>
+<body>
+<script type="text/javascript">
+document.write("hello");
+var a = parseInt(prompt("enter first number"));
+var b=parseInt(prompt("enter the second number"));
+document.write("value before swap="+a+" " +b);
+function swap(a,b){
+var temp=a;
+a=b;
+b=temp;
+document.write("value after swap="+a+" "+b);
+}
+swap(a,b);
+</script>
+</body>
+</html>
+
+8. print natural numbers using all three loops
+<html>
+<head>
+<title>First JS program</title>
+</head>
+
+<body>
+<script type="text/javascript">
+var c=parseInt(prompt("enter 1 , 2 or 3"));
+var i;
+if(c==1)
+{
+document.write("print numbers using for loop");
+for(i=0;i<=10;i++)
+{
+	document.write(i+"\n");
+	document.write("\n");
+}
+}
+else if(c==2)
+{
+document.write("print numbers using while loop");
+i=1;
+while(i<=10)
+{
+document.write(i+"\n");
+i=i+1;
+}
+}
+else{
+document.write("print numbers using do while loop");
+i=1;
+do{
+document.write(i+"\n");
+i=i+1;
+}while(i<=10);
+}
+</script>
+</body>
+</html>
+
+
+9. program to find the factorial of a number
+<html>
+<head>
+<title>First JS program</title>
+</head>
+<body>
+<script type="text/javascript">
+var fact=1;
+var i=1;
+var n=parseInt(prompt("which number factorail"));
+if(n==0)
+{
+document.write("factorial of a number is  1");
+}
+else
+{
+for(i=1;i<=n;i++)
+{
+fact=fact*i;
+}
+}
+document.write("factorial of a number is  "+fact);
+</script>
+</body>
+</html>
+
+10.Example of javascript to print using inline
+<html>
+<head>
+  <title>Inline JavaScript Example</title>
+</head>
+<body>
+<button onclick="alert('Hello! You clicked the button!')">Click Me</button>
+</body>
+</html>
+11.program to use three methods of variable declaration var, let, const
+<html>
+<head>
+  <title>Inline JavaScript Example</title>
+</head>
+<body>
+<script type="text/javascript">
+var a=7;
+let b=8;
+const c=9;
+alert(a);
+alert(b);
+alert(c);
+</script>
+</body>
+</html>
+
+12. program to run a function by using button on click
+<html>
+<head>
+  <title>Inline JavaScript Example</title>
+</head>
+<body>
+<button onClick="add()">click here</button>
+<script type="text/javascript">
+function add()
+{
+var a=parseInt(prompt("enter the value of a"));
+var b=parseInt(prompt("enter the value of b"));
+var addd=a+b;
+alert("sum of two number is "+addd);
+document.write("sum of two number is "+addd);
+}
+</script>
+</body>
+</html>
+
+13.Change the content of a tag by the use of javascript funtion
+<html>
+<head>
+  <title>Inline JavaScript Example</title>
+</head>
+<body>
+<p id="one">Hello Class</p>
+<button onClick="change()">click here</button>
+<script type="text/javascript">
+function change()
+{
+var text=document.querySelector("#one");
+text.innerHTML="this is the new text";
+}
+</script>
+</body>
+</html>
+
+14.Display multiplication table of entered number
+-->
+
+
+
+
+
+
+
+

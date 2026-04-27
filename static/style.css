@@ -1,0 +1,177 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+    margin: 0;
+    background-color: #E9F1FA;
+    color: #1f2937;
+}
+
+/* NAVBAR */
+nav {
+    background: #FFFFFF;
+    border-bottom: 1px solid #dbeafe;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav b {
+    color: #00ABE4;
+    font-size: 18px;
+}
+
+nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #1f2937;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #00ABE4;
+}
+
+/* CONTAINER */
+.container {
+    width: 75%;
+    margin: auto;
+    padding: 25px;
+}
+
+/* CARD DESIGN */
+.card {
+    background: #FFFFFF;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
+    transition: 0.2s;
+}
+
+.card:hover {
+    box-shadow: 0 6px 18px rgba(0, 171, 228, 0.15);
+    border-color: #00ABE4;
+}
+
+/* BUTTONS */
+button {
+    background: #00ABE4;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+button:hover {
+    background: #0096c7;
+}
+
+/* INPUTS */
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cfe8ff;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background: #FFFFFF;
+}
+
+h1, h2, h3 {
+    color: #1f2937;
+}
+
+a {
+    transition: 0.2s;
+}
+
+a:hover {
+    color: #00ABE4;
+}
+
+nav {
+    background: #FFFFFF;
+    border-bottom: 1px solid #dbeafe;
+    padding: 14px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Logo */
+nav b {
+    color: #00ABE4;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Menu items */
+nav a {
+    margin-left: 18px;
+    text-decoration: none;
+    color: #1f2937;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+/* Hover effect */
+nav a:hover {
+    color: #00ABE4;
+    background: rgba(0, 171, 228, 0.08);
+    transform: translateY(-1px);
+}
+
+/* Active feel (optional visual effect) */
+nav a:active {
+    transform: scale(0.96);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.fade-in-delay {
+    animation: fadeInUp 1.2s ease forwards;
+}
+
+/* Smooth hover for buttons */
+button {
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 171, 228, 0.25);
+}
+
+/* Soft background glow */
+.hero-bg {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,171,228,0.2) 0%, transparent 70%);
+    top: 80px;
+    right: 80px;
+    border-radius: 50%;
+    filter: blur(30px);
+}

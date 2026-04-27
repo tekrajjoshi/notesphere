@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload - NoteSphere</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <div><b>NoteSphere</b></div>
+    <div>
+        <a href="/dashboard">Home</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h2>Upload Resource</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="title" placeholder="Title">
+
+        <textarea name="description" placeholder="Description"></textarea>
+
+        <select name="category">
+            <option>Programming</option>
+            <option>AI/ML</option>
+            <option>DBMS</option>
+            <option>Networking</option>
+        </select>
+
+        <input type="file" name="file">
+
+        <button type="submit">Upload</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

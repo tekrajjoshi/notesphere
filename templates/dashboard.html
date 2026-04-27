@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NoteSphere Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- TOP NAV -->
+<nav>
+    <div><b>NoteSphere</b></div>
+    <div>
+        <a href="/dashboard">Home</a>
+        <a href="/upload">Upload</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<!-- MAIN LAYOUT -->
+<div style="display:flex;">
+
+    <!-- SIDEBAR -->
+    <div style="
+        width:220px;
+        background:#FFFFFF;
+        height:100vh;
+        border-right:1px solid #dbeafe;
+        padding:20px;
+    ">
+
+        <h3>Menu</h3>
+
+        <p><a href="/dashboard">📚 All Files</a></p>
+        <p><a href="/upload">⬆ Upload</a></p>
+        <p>📂 Categories</p>
+
+        <p>Programming</p>
+        <p>AI / ML</p>
+        <p>DBMS</p>
+        <p>Networking</p>
+
+    </div>
+
+    <!-- CONTENT AREA -->
+    <div class="container" style="flex:1;">
+
+        <h2>Welcome {{ session['user'] }}</h2>
+
+        <!-- SEARCH -->
+        <form method="GET" action="/dashboard">
+            <input type="text" name="search" placeholder="Search files, notes, articles...">
+        </form>
+
+        <h3>Latest Resources</h3>
+
+        <!-- FILE GRID -->
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:15px;">
+
+        {% for file in files %}
+            <div class="card">
+                <h3>{{ file[1] }}</h3>
+                <p>{{ file[2] }}</p>
+                <small style="color:#00ABE4;">{{ file[4] }}</small>
+                <br><br>
+                <a href="/download/{{ file[3] }}">
+                    <button>Download</button>
+                </a>
+            </div>
+        {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NoteSphere - Smart Academic Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <div><b>NoteSphere</b></div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<div style="position:relative; overflow:hidden;">
+
+    <div class="hero-bg"></div>
+
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:80px 10%;
+    ">
+
+        <!-- TEXT -->
+        <div style="width:55%;" class="fade-in">
+
+            <h1 style="font-size:48px; margin-bottom:15px;">
+                Build, Learn & Share Knowledge Effortlessly
+            </h1>
+
+            <p style="font-size:16px; color:#555; line-height:1.7;">
+                NoteSphere is a modern academic platform where students can upload,
+                organize, and access study materials in a clean and structured way.
+            </p>
+
+            <br>
+
+            <a href="/register">
+                <button>Get Started</button>
+            </a>
+
+            <a href="/login">
+                <button style="background:white; color:#00ABE4; border:1px solid #00ABE4;">
+                    Login
+                </button>
+            </a>
+
+        </div>
+
+        <!-- VISUAL CARD -->
+        <div style="width:40%;" class="fade-in-delay">
+
+            <div style="
+                background:white;
+                border:1px solid #dbeafe;
+                border-radius:12px;
+                height:320px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:14px;
+                color:#888;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            ">
+                📊 Dashboard Preview / Illustration
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- FEATURES -->
+<div style="background:#FFFFFF; padding:70px 10%; border-top:1px solid #dbeafe;">
+
+    <h2 style="text-align:center; margin-bottom:40px;">
+        Why Students Choose NoteSphere
+    </h2>
+
+    <div style="display:flex; gap:20px;">
+
+        <div class="card fade-in">
+            <h3>⚡ Fast Access</h3>
+            <p>Instant search and download system.</p>
+        </div>
+
+        <div class="card fade-in-delay">
+            <h3>📚 Organized Learning</h3>
+            <p>Structured categories for every subject.</p>
+        </div>
+
+        <div class="card fade-in">
+            <h3>🧠 Smart System</h3>
+            <p>Clean interface designed for productivity.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center; padding:30px; background:#f7f7f5;">
+    <p>© 2026 NoteSphere. Built for modern learners.</p>
+</div>
+
+</body></html>
