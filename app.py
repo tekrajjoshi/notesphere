@@ -1,32 +1,27 @@
 import sqlite3
-from flask import g
 import os
-import uuid
-from flask import send_from_directory
-from flask import Flask, render_template, request, redirect, session
-#from flask_mysqldb import MySQL
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Flask, render_template, request, redirect, session, send_file
 
 app = Flask(__name__)
-UPLOAD_FOLDER = 'uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# ---------------- CONFIG ----------------
 app.secret_key = "notesphere_secret"
 
-# MySQL Config
-'''app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''   # put your MySQL password if any
-app.config['MYSQL_DB'] = 'notesphere
+UPLOAD_FOLDER = "uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-mysql = MySQL(app)'''
+DATABASE = "notesphere.db"
 
+# ---------------- DATABASE ----------------
 def get_db():
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
     return conn
 
+
 def init_db():
-    conn = sqlite3.connect("notesphere.db")
+    conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -54,6 +49,8 @@ def init_db():
 
 init_db()
 
+# ---------------- ROUTES ----------------
+
 @app.route('/')
 def home():
     return render_template("index.html")
@@ -80,6 +77,7 @@ def register():
         return redirect('/login')
 
     return render_template('register.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -117,10 +115,12 @@ def dashboard():
 
     return render_template('dashboard.html', files=files)
 
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -131,7 +131,8 @@ def upload():
 
         file = request.files['file']
         filename = file.filename
-        file.save(os.path.join("uploads", filename))
+        filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        file.save(filepath)
 
         conn = get_db()
         cursor = conn.cursor()
@@ -146,12 +147,14 @@ def upload():
 
         return redirect('/dashboard')
 
-    return render_template('upload.html')@app.route('/download/<filename>')
+    return render_template('upload.html')
+
 
 @app.route('/download/<filename>')
 def download(filename):
     return send_file(os.path.join("uploads", filename), as_attachment=True)
 
 
+# ---------------- RUN ----------------
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)
