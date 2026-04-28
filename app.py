@@ -26,30 +26,30 @@ def get_db():
     return conn
 
 def init_db():
-    with sqlite3.connect("notesphere.db") as conn:
-        cursor = conn.cursor()
+    conn = sqlite3.connect("notesphere.db")
+    cursor = conn.cursor()
 
-        cursor.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT,
-            email TEXT,
-            password TEXT
-        )
-        """)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT,
+        email TEXT UNIQUE,
+        password TEXT
+    )
+    """)
 
-        cursor.execute("""
-        CREATE TABLE IF NOT EXISTS files (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT,
-            description TEXT,
-            filename TEXT,
-            category TEXT
-        )
-        """)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS files (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT,
+        description TEXT,
+        filename TEXT,
+        category TEXT
+    )
+    """)
 
-        conn.commit()
-        conn.close()
+    conn.commit()
+    conn.close()
 
 
 init_db()
