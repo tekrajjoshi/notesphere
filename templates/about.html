@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me - NoteSphere</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #E9F1FA;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .profile {
+            text-align: center;
+        }
+
+        .profile img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .title {
+            color: #00ABE4;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #00ABE4;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .article {
+            background: #f5f7fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- PROFILE -->
+    <div class="card profile">
+        <img src="/static/profile.png" alt="profile">
+        <div class="name">Tek Raj Joshi</div>
+        <div class="title">AI Engineer | Web Developer</div>
+
+        <a href="/static/cv.pdf" class="btn">Download CV</a>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="card">
+        <div class="section-title">About Me</div>
+        <p>
+            I am a Computer Science graduate passionate about Artificial Intelligence,
+            Machine Learning, and Web Development. I build intelligent systems and modern applications.
+        </p>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="card">
+        <div class="section-title">Skills</div>
+        <p>Python, Flask, Machine Learning, SQL, Data Science</p>
+    </div>
+
+    <!-- ARTICLES -->
+    <div class="card">
+        <div class="section-title">Articles</div>
+
+        <div class="article">
+            <strong>How I Built NoteSphere</strong>
+            <p>This platform was built using Flask and deployed on cloud...</p>
+        </div>
+
+        <div class="article">
+            <strong>Getting Started with Machine Learning</strong>
+            <p>Machine learning is transforming industries...</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
